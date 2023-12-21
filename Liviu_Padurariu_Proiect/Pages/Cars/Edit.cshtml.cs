@@ -30,15 +30,19 @@ namespace Liviu_Padurariu_Proiect.Pages.Cars
                 return NotFound();
             }
 
-            var car =  await _context.Car.FirstOrDefaultAsync(m => m.ID == id);
+            var car =  await _context.Car
+                .Include(c => c.Transmission)
+                .Include(c => c.CarMaker)
+                .Include(c => c.Color)
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (car == null)
             {
                 return NotFound();
             }
             Car = car;
-           ViewData["CarMakerID"] = new SelectList(_context.CarMaker, "ID", "ID");
-           ViewData["ColorID"] = new SelectList(_context.Color, "ID", "ID");
-           ViewData["TransmissionID"] = new SelectList(_context.Set<Transmission>(), "ID", "ID");
+           ViewData["CarMakerID"] = new SelectList(_context.CarMaker, "ID", "Name");
+           ViewData["ColorID"] = new SelectList(_context.Color, "ID", "Name");
+           ViewData["TransmissionID"] = new SelectList(_context.Set<Transmission>(), "ID", "Name");
             return Page();
         }
 

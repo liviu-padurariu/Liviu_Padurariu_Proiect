@@ -30,15 +30,23 @@ namespace Liviu_Padurariu_Proiect.Pages.Rentals
                 return NotFound();
             }
 
-            var rental =  await _context.Rental.FirstOrDefaultAsync(m => m.ID == id);
+            var rental =  await _context.Rental
+                .Include(c => c.User)
+                .Include(c => c.Location)
+                .FirstOrDefaultAsync(m => m.ID == id);
+
+            var carMakers = _context.Car
+                .Include(m => m.CarMaker)
+                .Select(x => new { x.ID, CarMakerName = x.CarMaker.Name });
+
             if (rental == null)
             {
                 return NotFound();
             }
             Rental = rental;
-           ViewData["CarID"] = new SelectList(_context.Car, "ID", "ID");
-           ViewData["LocationID"] = new SelectList(_context.Location, "ID", "ID");
-           ViewData["UserID"] = new SelectList(_context.Set<User>(), "ID", "ID");
+           ViewData["CarID"] = new SelectList(carMakers, "ID", "CarMakerName");
+           ViewData["LocationID"] = new SelectList(_context.Location, "ID", "Name");
+           ViewData["UserID"] = new SelectList(_context.Set<User>(), "ID", "FullName");
             return Page();
         }
 

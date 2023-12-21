@@ -21,6 +21,7 @@ namespace Liviu_Padurariu_Proiect.Pages.Users
 
         public IActionResult OnGet()
         {
+            ViewData["RoleID"] = new SelectList(_context.Role, "ID", "Name");
             return Page();
         }
 
@@ -31,7 +32,7 @@ namespace Liviu_Padurariu_Proiect.Pages.Users
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
-            {
+            { 
                 return Page();
             }
 

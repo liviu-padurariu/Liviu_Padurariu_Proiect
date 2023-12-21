@@ -4,7 +4,59 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="Colors/Index">TEST Web apps with ASP.NET Core</a>.</p>
-</div>
+<style>
+    /* Add your custom styles here */
+    body {
+        font-family: 'Arial', sans-serif;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+        .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .table a {
+            display: block;
+            padding: 10px;
+            margin: 5px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #3498db;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+            .table a:hover {
+                background-color: #2980b9;
+            }
+
+    h5 {
+        color: #2c3e50;
+        text-align: center;
+        
+    }
+</style>
+
+<table class="table">
+    <tr>
+        <td><a href="Cars/Index">Cars</a></td>
+        <td><a href="CarMakers/Index">Car Makers</a></td>
+        <td><a href="Colors/Index">Colors</a></td>
+    </tr>
+    <tr>
+        <td><a href="Locations/Index">Locations</a></td>
+        <td><h5>Rent-A-Car</h5></td>
+        <td><a href="Rentals/Index">Rentals</a></td>
+    </tr>
+    <tr>
+        <td><a href="Transmissions/Index">Transmission</a></td>
+        <td><a href="Roles/Index">Roles</a></td>
+        <td><a href="Users/Index">Users</a></td>
+    </tr>
+</table>

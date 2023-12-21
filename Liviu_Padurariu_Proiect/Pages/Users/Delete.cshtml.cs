@@ -29,7 +29,9 @@ namespace Liviu_Padurariu_Proiect.Pages.Users
                 return NotFound();
             }
 
-            var user = await _context.User.FirstOrDefaultAsync(m => m.ID == id);
+            var user = await _context.User
+                .Include(c => c.Role)
+                .FirstOrDefaultAsync(m => m.ID == id);
 
             if (user == null)
             {

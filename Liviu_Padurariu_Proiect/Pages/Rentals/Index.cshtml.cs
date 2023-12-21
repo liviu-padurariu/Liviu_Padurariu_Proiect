@@ -24,7 +24,7 @@ namespace Liviu_Padurariu_Proiect.Pages.Rentals
         public async Task OnGetAsync()
         {
             Rental = await _context.Rental
-                .Include(r => r.Car)
+                .Include(r => r.Car).ThenInclude(m => m.CarMaker)
                 .Include(r => r.Location)
                 .Include(r => r.User).ToListAsync();
         }

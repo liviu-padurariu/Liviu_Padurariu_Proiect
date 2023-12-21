@@ -28,7 +28,11 @@ namespace Liviu_Padurariu_Proiect.Pages.Rentals
                 return NotFound();
             }
 
-            var rental = await _context.Rental.FirstOrDefaultAsync(m => m.ID == id);
+            var rental = await _context.Rental
+                .Include(c => c.Location)
+                .Include(c => c.User)
+                .Include(c => c.Car).ThenInclude(c => c.CarMaker)
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (rental == null)
             {
                 return NotFound();

@@ -21,9 +21,9 @@ namespace Liviu_Padurariu_Proiect.Pages.Cars
 
         public IActionResult OnGet()
         {
-        ViewData["CarMakerID"] = new SelectList(_context.CarMaker, "ID", "ID");
-        ViewData["ColorID"] = new SelectList(_context.Color, "ID", "ID");
-        ViewData["TransmissionID"] = new SelectList(_context.Set<Transmission>(), "ID", "ID");
+        ViewData["CarID"] = new SelectList(_context.CarMaker, "ID", "Name");
+        ViewData["ColorID"] = new SelectList(_context.Color, "ID", "Name");
+        ViewData["TransmissionID"] = new SelectList(_context.Set<Transmission>(), "ID", "Name");
             return Page();
         }
 

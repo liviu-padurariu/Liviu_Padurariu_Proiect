@@ -36,6 +36,8 @@ namespace Liviu_Padurariu_Proiect.Pages.Users
                 return NotFound();
             }
             User = user;
+            ViewData["RoleID"] = new SelectList(_context.Set<Role>(), "ID", "Name");
+            
             return Page();
         }
 

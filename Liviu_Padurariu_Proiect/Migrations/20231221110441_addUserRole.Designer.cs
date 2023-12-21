@@ -4,6 +4,7 @@ using Liviu_Padurariu_Proiect.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Liviu_Padurariu_Proiect.Migrations
 {
     [DbContext(typeof(Liviu_Padurariu_ProiectContext))]
-    partial class Liviu_Padurariu_ProiectContextModelSnapshot : ModelSnapshot
+    [Migration("20231221110441_addUserRole")]
+    partial class addUserRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

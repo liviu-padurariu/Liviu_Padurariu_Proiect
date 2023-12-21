@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Liviu_Padurariu_Proiect.Data;
 using Liviu_Padurariu_Proiect.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Liviu_Padurariu_Proiect.Pages.Rentals
 {
@@ -21,9 +22,13 @@ namespace Liviu_Padurariu_Proiect.Pages.Rentals
 
         public IActionResult OnGet()
         {
-        ViewData["CarID"] = new SelectList(_context.Car, "ID", "ID");
-        ViewData["LocationID"] = new SelectList(_context.Location, "ID", "ID");
-        ViewData["UserID"] = new SelectList(_context.Set<User>(), "ID", "ID");
+            var carMakers = _context.Car
+                .Include(m => m.CarMaker)
+                .Select(x => new {x.ID, CarMakerName = x.CarMaker.Name });
+
+            ViewData["CarID"] = new SelectList(carMakers, "ID", "CarMakerName");
+            ViewData["LocationID"] = new SelectList(_context.Location, "ID", "Name");
+            ViewData["UserID"] = new SelectList(_context.Set<User>(), "ID", "FullName");
             return Page();
         }
 
